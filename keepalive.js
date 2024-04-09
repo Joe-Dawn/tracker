@@ -1,20 +1,15 @@
-const express = require('express');
+from flask import Flask
+from threading import Thread
 
-const app = express();
-const port = 8080;
+app = Flask('')
 
-app.get('/', (req, res) => {
-  res.redirect('https://phantom.is-a.dev/support');
-});
+@app.route('/')
+def main():
+    return '<meta http-equiv="refresh" content="0; URL=https://phantom.is-a.dev/support"/>'
 
-function run() {
-  app.listen(port, '0.0.0.0', () => {
-    console.log(`Server is running on http://0.0.0.0:${port}`);
-  });
-}
+def run():
+    app.run(host="0.0.0.0", port=8080)
 
-function keepAlive() {
-  run();
-}
-
-keepAlive();
+def keep_alive():
+    server = Thread(target=run)
+    server.start()
